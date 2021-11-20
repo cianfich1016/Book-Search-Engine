@@ -17,10 +17,10 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-//Update Express.js to use Apollo server features
-server.applyMiddleware({ app});
+server.start().then(res => {
+  server.applyMiddleware({ app});
 
-app.use(express.urlencoded({ extended: false }));
+  app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // if we're in production, serve client/build as static assets
@@ -38,3 +38,10 @@ db.once('open', () => {
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });
+
+
+
+});
+//Update Express.js to use Apollo server features
+
+
